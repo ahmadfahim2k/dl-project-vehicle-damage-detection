@@ -40,6 +40,9 @@ dataset/
 # Streamlit temp files
 streamlit-app/temp_file.jpg
 
+# FastAPI temp files
+fastapi-server/temp_files/
+
 # IDEs
 .vscode/
 .idea/
