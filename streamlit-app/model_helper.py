@@ -1,3 +1,4 @@
+import os
 from PIL import Image
 import torch
 from torch import nn
@@ -45,7 +46,8 @@ def predict(image_path):
     
     if trained_model is None:
         trained_model = CarClassifierResNet(num_classes=len(class_names))
-        trained_model.load_state_dict(torch.load("models\saved_model.pth"))
+        model_path = os.path.join(os.path.dirname(__file__), "models", "saved_model.pth")
+        trained_model.load_state_dict(torch.load(model_path))
         trained_model.eval()
     
     with torch.no_grad():
