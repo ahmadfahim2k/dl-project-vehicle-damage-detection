@@ -49,8 +49,8 @@ Transfer learning with **ResNet50** (ImageNet pretrained):
 - **Validation accuracy: ~81%**
 
 Hyperparameters were tuned with [Optuna](https://optuna.org/) (20 trials):
-- Learning rate: `5.26e-4`
-- Dropout: `0.294`
+- Learning rate: `0.0005`
+- Dropout: `0.3`
 
 Other approaches explored (CNN from scratch, CNN with regularization, EfficientNet) all converged to ~81% accuracy. ResNet50 was selected for deployment.
 
