@@ -61,12 +61,15 @@ dl-project-vehicle-damage-detection/
 ├── damage_prediction.ipynb       # Model training and evaluation
 ├── hyperparameter_tuning.ipynb   # Optuna hyperparameter search
 ├── dataset/                      # Training images (6 subdirectories)
-└── streamlit-app/
-    ├── app.py                    # Streamlit web application
-    ├── model_helper.py           # Model definition and inference
-    ├── requirements.txt          # Python dependencies
-    └── models/
-        └── saved_model.pth       # Trained model weights
+├── streamlit-app/
+│   ├── app.py                    # Streamlit web application
+│   ├── model_helper.py           # Model definition and inference
+│   ├── requirements.txt          # Python dependencies
+│   └── models/
+│       └── saved_model.pth       # Trained model weights
+└── fastapi-server/
+    ├── server.py                 # FastAPI REST API server
+    └── requirements.txt          # Python dependencies
 ```
 
 ## Screenshots
@@ -79,7 +82,7 @@ dl-project-vehicle-damage-detection/
 ![App Screenshot 3](./images/image-3.png)
 
 ![App Screenshot 4](./images/image-4.png)
-## Running the App
+## Running the Streamlit App
 
 ```bash
 cd streamlit-app
@@ -89,11 +92,51 @@ streamlit run app.py
 
 Upload a JPG or PNG image of a vehicle — the app will display the image and predict the damage class.
 
+## Running the FastAPI Server
+
+```bash
+cd fastapi-server
+pip install -r requirements.txt
+fastapi dev server.py
+```
+
+### Endpoints
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/hello` | Health check |
+| `POST` | `/predict` | Predict damage class from an uploaded image |
+| `POST` | `/debug` | Return image metadata without running inference |
+
+### Example Request
+
+```bash
+curl -X POST "http://127.0.0.1:8000/predict" \
+  -H "accept: application/json" \
+  -F "file=@vehicle.jpg"
+```
+
+**Response:**
+```json
+{ "prediction": "Front Crushed" }
+```
+
+The server saves uploaded images to a temporary directory, runs inference using the same `model_helper.py` from the Streamlit app, and cleans up the file afterwards.
+
 ## Requirements
 
+### Streamlit App
 ```
 streamlit==1.48.1
 Pillow==11.3.0
 torch==2.11.0
 torchvision==0.26.0
+```
+
+### FastAPI Server
+```
+fastapi[standard]
+torch==2.11.0
+torchvision==0.26.0
+Pillow==11.3.0
 ```
