@@ -47,7 +47,7 @@ def predict(image_path):
     if trained_model is None:
         trained_model = CarClassifierResNet(num_classes=len(class_names))
         model_path = os.path.join(os.path.dirname(__file__), "models", "saved_model.pth")
-        trained_model.load_state_dict(torch.load(model_path))
+        trained_model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
         trained_model.eval()
     
     with torch.no_grad():
