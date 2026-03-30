@@ -2,6 +2,8 @@
 
 A deep learning system that classifies vehicle damage from images into 6 categories using transfer learning with ResNet50, deployed as a Streamlit web app.
 
+**Live Demo:** [https://dl-project-vehicle-damage-detection-6bkv6g2fn74frrtqtku4km.streamlit.app/](https://dl-project-vehicle-damage-detection-6bkv6g2fn74frrtqtku4km.streamlit.app/)
+
 ## Classes
 
 | Class | Description |
