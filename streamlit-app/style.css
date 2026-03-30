@@ -1,0 +1,10 @@
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+    overflow: hidden;
+}
+
+[data-testid="stImage"] img {
+    max-height: 50vh;
+    object-fit: contain;
+}
